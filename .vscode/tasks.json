@@ -1,0 +1,68 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build apps",
+      "detail": "dotnet build + ng build (development)",
+      "type": "shell",
+      "command": "bash scripts/build.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$tsc", "$msCompile"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false,
+        "clear": true
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "icon": {
+        "id": "tools",
+        "color": "terminal.ansiBlue"
+      }
+    },
+    {
+      "label": "Start app",
+      "detail": "Stop, build, reseed DB, start API (:5133) + consumer + Angular (:4200) with Hot Reload enabled",
+      "type": "shell",
+      "command": "bash scripts/start.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true,
+        "clear": true
+      },
+      "icon": {
+        "id": "play",
+        "color": "terminal.ansiGreen"
+      }
+    },
+    {
+      "label": "Stop app",
+      "detail": "Stop API, consumer, and Angular (:4200) processes",
+      "type": "shell",
+      "command": "bash scripts/stop.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false
+      },
+      "icon": {
+        "id": "debug-stop",
+        "color": "terminal.ansiRed"
+      }
+    }
+  ]
+}

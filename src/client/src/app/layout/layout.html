@@ -1,0 +1,21 @@
+<mat-sidenav-container class="shell">
+  <mat-sidenav mode="side" opened class="shell__sidenav">
+    <div class="shell__brand">PF Data Pipeline</div>
+    <mat-nav-list>
+      @for (item of navItems; track item.path) {
+        <a
+          mat-list-item
+          [routerLink]="item.path"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+        >
+          {{ item.label }}
+        </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="shell__content">
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>
