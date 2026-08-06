@@ -1,0 +1,37 @@
+{
+  "name": "Live Coding Exercise (Angular 20 + .NET 10)",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:1-10.0",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "angular.ng-template",
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "qwtel.sqlite-viewer"
+      ]
+    }
+  },
+  "forwardPorts": [4200, 5133],
+  "portsAttributes": {
+    "4200": {
+      "label": "Angular client",
+      "onAutoForward": "openPreview"
+    },
+    "5133": {
+      "label": ".NET API",
+      "onAutoForward": "notify"
+    }
+  },
+  "remoteEnv": {
+    "DOTNET_USE_POLLING_FILE_WATCHER": "1",
+    "Database__ConnectionString": "Data Source=/workspaces/pf-data-pipeline/temp/exercise.db"
+  },
+  "remoteUser": "vscode"
+}
