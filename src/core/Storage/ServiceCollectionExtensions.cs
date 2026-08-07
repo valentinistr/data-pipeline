@@ -1,8 +1,8 @@
+using Core.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Server.Options;
 
-namespace Server.Storage;
+namespace Core.Storage;
 
 public static class ServiceCollectionExtensions
 {

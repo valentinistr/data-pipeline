@@ -1,7 +1,7 @@
+using Core.Data;
+using Core.Models;
+using Core.ServiceBus.Models;
 using Microsoft.EntityFrameworkCore;
-using Server.Data;
-using Server.Models;
-using Server.ServiceBus.Models;
 
 namespace Database.Data;
 

@@ -1,4 +1,4 @@
-namespace Server.Storage;
+namespace Core.Storage;
 
 public interface IFileStorage
 {

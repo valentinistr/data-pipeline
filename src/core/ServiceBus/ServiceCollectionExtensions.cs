@@ -1,8 +1,8 @@
+using Core.ServiceBus.Consumer;
+using Core.ServiceBus.Publisher;
 using Microsoft.Extensions.DependencyInjection;
-using Server.ServiceBus.Consumer;
-using Server.ServiceBus.Publisher;
 
-namespace Server.ServiceBus;
+namespace Core.ServiceBus;
 
 public static class ServiceCollectionExtensions
 {
@@ -22,7 +22,6 @@ public static class ServiceCollectionExtensions
 
         services.AddSingleton(new EventBusConsumerOptions<TEvent> { PollInterval = pollInterval });
         services.AddScoped<IEventBusConsumer<TEvent>, TConsumer>();
-        services.AddScoped<IEventBusMessageBatchHandler<TEvent>, EventBusMessageBatchHandler<TEvent>>();
         services.AddHostedService<EventBusConsumerWorker<TEvent>>();
         return services;
     }

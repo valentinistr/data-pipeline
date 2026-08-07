@@ -1,4 +1,4 @@
-namespace Server.ServiceBus.Models;
+namespace Core.ServiceBus.Models;
 
 public class EventBusMessage
 {

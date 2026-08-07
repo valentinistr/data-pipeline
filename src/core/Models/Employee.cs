@@ -1,4 +1,4 @@
-namespace Server.Models;
+namespace Core.Models;
 
 public class Employee
 {

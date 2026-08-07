@@ -1,6 +1,5 @@
+using Core.Models;
 using Database.Data;
-using Server.Data;
-using Server.Models;
 
 namespace Database.Seeding;
 

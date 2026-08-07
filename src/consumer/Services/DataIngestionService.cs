@@ -1,12 +1,12 @@
-using Consumer.DataProcessors;
-using Consumer.Models;
+using Core.Data;
+using Core.Models;
+using Core.ServiceBus.Events;
+using Core.Services;
 using Microsoft.Extensions.Logging;
-using Server.Data;
-using Server.Models;
-using Server.ServiceBus.Events;
-using Server.Services;
+using WorkerProcess.DataProcessors;
+using WorkerProcess.Models;
 
-namespace Consumer.Services;
+namespace WorkerProcess.Services;
 
 public sealed class DataIngestionService(
     IUnitOfWork unitOfWork,

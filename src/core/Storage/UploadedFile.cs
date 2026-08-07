@@ -1,4 +1,4 @@
-namespace Server.Storage;
+namespace Core.Storage;
 
 // Question: What is a record?
 public sealed record UploadedFile(string FileName, Stream Content) : IDisposable, IAsyncDisposable

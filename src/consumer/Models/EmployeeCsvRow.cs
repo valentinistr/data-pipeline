@@ -1,4 +1,4 @@
-namespace Consumer.Models;
+namespace WorkerProcess.Models;
 
 public sealed class EmployeeCsvRow
 {

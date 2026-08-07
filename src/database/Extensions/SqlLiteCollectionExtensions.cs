@@ -1,11 +1,11 @@
+using Core.Data;
+using Core.Options;
 using Database.Data;
 using Database.Seeding;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Server.Data;
-using Server.Options;
 
 namespace Database.Extensions;
 

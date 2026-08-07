@@ -1,6 +1,6 @@
-using Server.ServiceBus.Events;
+using Core.ServiceBus.Events;
 
-namespace Consumer.Services;
+namespace WorkerProcess.Services;
 
 public interface IDataIngestionService
 {

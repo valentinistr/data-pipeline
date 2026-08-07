@@ -1,6 +1,6 @@
-using Consumer.Models;
+using WorkerProcess.Models;
 
-namespace Consumer.DataProcessors;
+namespace WorkerProcess.DataProcessors;
 
 public interface IDataProcessor<TData, TRow>
 {

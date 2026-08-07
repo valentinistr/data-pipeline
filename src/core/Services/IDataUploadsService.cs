@@ -1,6 +1,6 @@
-using Server.Models;
+using Core.Models;
 
-namespace Server.Services;
+namespace Core.Services;
 
 public interface IDataUploadsService
 {

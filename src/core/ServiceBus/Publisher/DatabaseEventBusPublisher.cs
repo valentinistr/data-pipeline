@@ -1,8 +1,8 @@
 using System.Text.Json;
-using Server.Data;
-using Server.ServiceBus.Models;
+using Core.Data;
+using Core.ServiceBus.Models;
 
-namespace Server.ServiceBus.Publisher;
+namespace Core.ServiceBus.Publisher;
 
 public sealed class DatabaseEventBusPublisher(IUnitOfWork unitOfWork) : IEventBusPublisher
 {
@@ -13,8 +13,7 @@ public sealed class DatabaseEventBusPublisher(IUnitOfWork unitOfWork) : IEventBu
 
         unitOfWork.EventBusMessages.Add(new EventBusMessage
         {
-            Channel = typeof(TEvent).FullName
-                ?? throw new InvalidOperationException($"Could not resolve full name for type '{typeof(TEvent).Name}'."),
+            Channel = typeof(TEvent).FullName ?? throw new InvalidOperationException($"Could not resolve full name for type '{typeof(TEvent).Name}'."),
             Payload = JsonSerializer.Serialize(@event),
             Timestamp = DateTime.UtcNow,
             Status = EventBusMessageStatus.Pending

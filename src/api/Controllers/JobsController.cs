@@ -1,7 +1,7 @@
+using Core.Data;
+using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Server.Data;
-using Server.Models;
 
 namespace Api.Controllers;
 

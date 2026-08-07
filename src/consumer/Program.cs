@@ -1,15 +1,14 @@
-using Consumer.DataProcessors;
-using Consumer.Handlers;
-using Consumer.Models;
-using Consumer.Services;
+using Core.Extensions;
+using Core.Models;
+using Core.ServiceBus;
+using Core.ServiceBus.Events;
 using Database.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Server.Extensions;
-using Server.Models;
-using Server.ServiceBus;
-using Server.ServiceBus.Events;
-using Server.Services;
+using WorkerProcess.DataProcessors;
+using WorkerProcess.Handlers;
+using WorkerProcess.Models;
+using WorkerProcess.Services;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -18,7 +17,7 @@ builder.Services.AddCoreServices();
 builder.Services.AddScoped<IDataProcessor<Job, JobCsvRow>, JobDataProcessor>();
 builder.Services.AddScoped<IDataProcessor<Employee, EmployeeCsvRow>, EmployeeDataProcessor>();
 builder.Services.AddScoped<IDataIngestionService, DataIngestionService>();
-builder.Services.AddEventBusConsumer<FileUploadEvent, FileUploadEventConsumer>(TimeSpan.FromSeconds(5));
+builder.Services.AddEventBusConsumer<FileUploadEvent, FileUploadEventConsumer>(TimeSpan.FromSeconds(15));
 
 var host = builder.Build();
 await host.RunAsync();

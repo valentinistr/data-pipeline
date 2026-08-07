@@ -1,5 +1,5 @@
+using Core.Data;
 using Microsoft.EntityFrameworkCore;
-using Server.Data;
 
 namespace Database.Data;
 

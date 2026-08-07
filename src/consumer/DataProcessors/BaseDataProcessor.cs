@@ -1,8 +1,8 @@
 using System.Globalization;
-using Consumer.Models;
 using CsvHelper;
+using WorkerProcess.Models;
 
-namespace Consumer.DataProcessors;
+namespace WorkerProcess.DataProcessors;
 
 public abstract class BaseDataProcessor<TData, TRow> : IDataProcessor<TData, TRow>
 {

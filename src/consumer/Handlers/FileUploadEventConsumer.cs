@@ -1,15 +1,14 @@
-using Consumer.Services;
-using Server.ServiceBus.Consumer;
-using Server.ServiceBus.Events;
+using Core.ServiceBus.Consumer;
+using Core.ServiceBus.Events;
+using WorkerProcess.Services;
 
-namespace Consumer.Handlers;
+namespace WorkerProcess.Handlers;
 
 public sealed class FileUploadEventConsumer(IDataIngestionService dataIngestionService) : IEventBusConsumer<FileUploadEvent>
 {
     public Task ConsumeAsync(FileUploadEvent @event, CancellationToken cancellationToken)
     {
-        Console.WriteLine(
-            $"FileUploadEvent: {@event.UploadLocation}, jobs={@event.JobsFileName ?? "(none)"}, employees={@event.EmployeesFileName ?? "(none)"}");
+        Console.WriteLine($"FileUploadEvent: {@event.UploadLocation}, jobs={@event.JobsFileName ?? "(none)"}, employees={@event.EmployeesFileName ?? "(none)"}");
 
         return dataIngestionService.IngestAsync(@event, cancellationToken);
     }

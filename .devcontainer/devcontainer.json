@@ -32,7 +32,7 @@
   "remoteEnv": {
     "DOTNET_USE_POLLING_FILE_WATCHER": "1",
     "Database__ConnectionString": "Data Source=/workspaces/pf-data-pipeline/temp/exercise.db",
-    "FileUpload__BasePath": "/workspaces/pf-data-pipeline/temp/uploads"
+    "FileSystemStorage__BasePath": "/workspaces/pf-data-pipeline/temp/uploads"
   },
   "remoteUser": "vscode"
 }

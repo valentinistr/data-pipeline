@@ -1,4 +1,4 @@
-namespace Server.ServiceBus.Publisher;
+namespace Core.ServiceBus.Publisher;
 
 public interface IEventBusPublisher
 {

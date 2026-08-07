@@ -1,7 +1,7 @@
-using Server.ServiceBus.Events;
-using Server.ServiceBus.Publisher;
-using Server.Services;
-using Server.Storage;
+using Core.ServiceBus.Events;
+using Core.ServiceBus.Publisher;
+using Core.Services;
+using Core.Storage;
 
 namespace Api.Services;
 

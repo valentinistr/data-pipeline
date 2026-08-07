@@ -1,4 +1,4 @@
-namespace Server.ServiceBus.Consumer;
+namespace Core.ServiceBus.Consumer;
 
 public interface IEventBusConsumer<in TEvent> where TEvent : class
 {

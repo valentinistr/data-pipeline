@@ -1,7 +1,7 @@
-using Consumer.Models;
-using Server.Models;
+using Core.Models;
+using WorkerProcess.Models;
 
-namespace Consumer.DataProcessors;
+namespace WorkerProcess.DataProcessors;
 
 public class JobDataProcessor : BaseDataProcessor<Job, JobCsvRow>
 {

@@ -1,8 +1,8 @@
+using Core.Data;
+using Core.Models;
 using Microsoft.EntityFrameworkCore;
-using Server.Data;
-using Server.Models;
 
-namespace Server.Services;
+namespace Core.Services;
 
 public sealed class DataUploadsService(IUnitOfWork unitOfWork) : IDataUploadsService
 {

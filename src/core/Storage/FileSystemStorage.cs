@@ -1,7 +1,7 @@
+using Core.Options;
 using Microsoft.Extensions.Options;
-using Server.Options;
 
-namespace Server.Storage;
+namespace Core.Storage;
 
 public sealed class FileSystemStorage : IFileStorage
 {

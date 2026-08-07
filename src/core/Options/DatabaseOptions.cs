@@ -1,4 +1,4 @@
-namespace Server.Options;
+namespace Core.Options;
 
 public sealed class DatabaseOptions
 {

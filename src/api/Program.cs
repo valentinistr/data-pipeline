@@ -1,9 +1,8 @@
 using Api.Services;
+using Core.Extensions;
+using Core.ServiceBus;
+using Core.Storage;
 using Database.Extensions;
-using Server.Extensions;
-using Server.ServiceBus;
-using Server.Services;
-using Server.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddEnvironmentVariables();

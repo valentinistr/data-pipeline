@@ -1,7 +1,7 @@
-using Server.Models;
-using Server.ServiceBus.Models;
+using Core.Models;
+using Core.ServiceBus.Models;
 
-namespace Server.Data;
+namespace Core.Data;
 
 public interface IUnitOfWork
 {

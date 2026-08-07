@@ -1,4 +1,4 @@
-namespace Server.ServiceBus.Events;
+namespace Core.ServiceBus.Events;
 
 public sealed class FileUploadEvent
 {

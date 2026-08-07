@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "api\Api.csproj", "{8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlLiteDatabase", "database\SqlLiteDatabase.csproj", "{92259546-9255-448F-94AC-CD6675255FC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer", "consumer\Consumer.csproj", "{AE0312EE-AAFB-4681-BE0C-41ECDB727331}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerProcess", "consumer\WorkerProcess.csproj", "{AE0312EE-AAFB-4681-BE0C-41ECDB727331}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

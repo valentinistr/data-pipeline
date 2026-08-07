@@ -1,4 +1,4 @@
-namespace Server.Data;
+namespace Database.Seeding;
 
 public interface IDatabaseSeed
 {
