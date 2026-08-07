@@ -14,9 +14,24 @@ public class DataImportsController(
     IDataManagementService dataManagementService) : ControllerBase
 {
     [HttpGet]
-    public async Task<IEnumerable<DataImport>> Get()
+    public async Task<ActionResult<PagedResult<DataImport>>> Get(
+        [FromQuery] int skip = 0,
+        [FromQuery] int take = 10)
     {
-        return await unitOfWork.DataImports.Query.OrderBy(d => d.Id).ToListAsync();
+        if (skip < 0 || take <= 0)
+        {
+            return BadRequest("skip must be >= 0 and take must be > 0.");
+        }
+
+        var query = unitOfWork.DataImports.Query.OrderBy(d => d.Id);
+        var totalCount = await query.CountAsync();
+        var items = await query.Skip(skip).Take(take).ToListAsync();
+
+        return new PagedResult<DataImport>
+        {
+            Items = items,
+            TotalCount = totalCount,
+        };
     }
 
     [HttpPost("upload")]

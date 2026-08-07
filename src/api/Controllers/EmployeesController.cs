@@ -10,9 +10,23 @@ namespace Api.Controllers;
 public class EmployeesController(IUnitOfWork unitOfWork) : ControllerBase
 {
     [HttpGet]
-    public async Task<IEnumerable<Employee>> Get()
+    public async Task<ActionResult<PagedResult<Employee>>> Get(
+        [FromQuery] int skip = 0,
+        [FromQuery] int take = 10)
     {
-        // Question: What is wrong here?
-        return await unitOfWork.Employees.Query.OrderBy(e => e.Id).ToListAsync();
+        if (skip < 0 || take <= 0)
+        {
+            return BadRequest("skip must be >= 0 and take must be > 0.");
+        }
+
+        var query = unitOfWork.Employees.Query.OrderBy(e => e.Id);
+        var totalCount = await query.CountAsync();
+        var items = await query.Skip(skip).Take(take).ToListAsync();
+
+        return new PagedResult<Employee>
+        {
+            Items = items,
+            TotalCount = totalCount,
+        };
     }
 }

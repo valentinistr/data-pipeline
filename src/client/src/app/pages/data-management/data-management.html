@@ -54,6 +54,14 @@
         <td class="mat-cell" [attr.colspan]="columns.length">No data imports found.</td>
       </tr>
     </table>
+
+    <mat-paginator
+      [length]="totalCount()"
+      [pageSize]="pageSize"
+      [hidePageSize]="true"
+      [showFirstLastButtons]="true"
+      (page)="onPage($event)"
+    />
   }
 
   <hr class="upload-divider" />

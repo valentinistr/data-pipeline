@@ -28,4 +28,12 @@
       <td class="mat-cell" [attr.colspan]="columns.length">No jobs found.</td>
     </tr>
   </table>
+
+  <mat-paginator
+    [length]="totalCount()"
+    [pageSize]="pageSize"
+    [hidePageSize]="true"
+    [showFirstLastButtons]="true"
+    (page)="onPage($event)"
+  />
 }

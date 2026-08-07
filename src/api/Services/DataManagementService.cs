@@ -32,7 +32,7 @@ public sealed class DataManagementService(
         }
 
         var folderPath = await fileStorage.SaveAsync(files, cancellationToken);
-        var dataImport = await dataUploadsService.CreateProcessingAsync(cancellationToken);
+        var dataImport = await dataUploadsService.CreatePendingAsync(cancellationToken);
 
         await eventBus.PublishAsync(
             new FileUploadEvent

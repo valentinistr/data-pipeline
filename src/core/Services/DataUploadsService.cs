@@ -6,18 +6,26 @@ namespace Core.Services;
 
 public sealed class DataUploadsService(IUnitOfWork unitOfWork) : IDataUploadsService
 {
-    public async Task<DataImport> CreateProcessingAsync(CancellationToken cancellationToken = default)
+    public async Task<DataImport> CreatePendingAsync(CancellationToken cancellationToken = default)
     {
         var dataImport = new DataImport
         {
             Uploaded = DateTime.UtcNow,
-            Status = "Processing",
+            Status = "Pending",
         };
 
         unitOfWork.DataImports.Add(dataImport);
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return dataImport;
+    }
+
+    public async Task SetProcessingAsync(int dataImportId, CancellationToken cancellationToken = default)
+    {
+        var dataImport = await GetDataUploadEntryAsync(dataImportId, cancellationToken);
+        dataImport.Status = "Processing";
+
+        await unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     public async Task SetCompletedAsync(

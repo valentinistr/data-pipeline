@@ -1,5 +1,6 @@
 import { Component, OnInit, computed, inject, signal, viewChild, ElementRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { DataImport } from '../../models/data-import';
 import { DataImportsService } from '../../services/data-imports.service';
@@ -8,7 +9,7 @@ type UploadStatus = 'idle' | 'uploading' | 'success' | 'error';
 
 @Component({
   selector: 'app-data-management',
-  imports: [MatTableModule, DatePipe],
+  imports: [MatTableModule, MatPaginatorModule, DatePipe],
   templateUrl: './data-management.html',
   styleUrl: './data-management.scss',
 })
@@ -18,6 +19,7 @@ export class DataManagementPage implements OnInit {
   private readonly jobsInput = viewChild<ElementRef<HTMLInputElement>>('jobsInput');
   private readonly employeesInput = viewChild<ElementRef<HTMLInputElement>>('employeesInput');
 
+  readonly pageSize = 10;
   readonly columns = [
     'id',
     'uploaded',
@@ -29,6 +31,7 @@ export class DataManagementPage implements OnInit {
     'invalidJobs',
   ] as const;
   readonly rows = signal<DataImport[]>([]);
+  readonly totalCount = signal(0);
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
 
@@ -48,9 +51,23 @@ export class DataManagementPage implements OnInit {
   );
 
   ngOnInit(): void {
-    this.dataImportsService.getAll().subscribe({
-      next: (data) => {
-        this.rows.set(data);
+    this.loadPage(0);
+  }
+
+  onPage(event: PageEvent): void {
+    this.loadPage(event.pageIndex, false);
+  }
+
+  private loadPage(pageIndex: number, showLoading = true): void {
+    if (showLoading) {
+      this.loading.set(true);
+    }
+    this.error.set(null);
+
+    this.dataImportsService.getPage(pageIndex * this.pageSize, this.pageSize).subscribe({
+      next: (result) => {
+        this.rows.set(result.items);
+        this.totalCount.set(result.totalCount);
         this.loading.set(false);
       },
       error: () => {

@@ -4,7 +4,9 @@ namespace Core.Services;
 
 public interface IDataUploadsService
 {
-    Task<DataImport> CreateProcessingAsync(CancellationToken cancellationToken = default);
+    Task<DataImport> CreatePendingAsync(CancellationToken cancellationToken = default);
+
+    Task SetProcessingAsync(int dataImportId, CancellationToken cancellationToken = default);
 
     Task SetCompletedAsync(
         int dataImportId,

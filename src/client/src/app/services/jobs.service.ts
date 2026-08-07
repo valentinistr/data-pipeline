@@ -1,14 +1,16 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_BASE_URL } from '../api-base-url';
 import { Job } from '../models/job';
+import { PagedResult } from '../models/paged-result';
 
 @Injectable({ providedIn: 'root' })
 export class JobsService {
   private readonly http = inject(HttpClient);
 
-  getAll(): Observable<Job[]> {
-    return this.http.get<Job[]>(`${API_BASE_URL}/Jobs`);
+  getPage(skip: number, take: number): Observable<PagedResult<Job>> {
+    const params = new HttpParams().set('skip', skip).set('take', take);
+    return this.http.get<PagedResult<Job>>(`${API_BASE_URL}/Jobs`, { params });
   }
 }

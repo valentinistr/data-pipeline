@@ -1,15 +1,17 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_BASE_URL } from '../api-base-url';
 import { DataImport } from '../models/data-import';
+import { PagedResult } from '../models/paged-result';
 
 @Injectable({ providedIn: 'root' })
 export class DataImportsService {
   private readonly http = inject(HttpClient);
 
-  getAll(): Observable<DataImport[]> {
-    return this.http.get<DataImport[]>(`${API_BASE_URL}/DataImports`);
+  getPage(skip: number, take: number): Observable<PagedResult<DataImport>> {
+    const params = new HttpParams().set('skip', skip).set('take', take);
+    return this.http.get<PagedResult<DataImport>>(`${API_BASE_URL}/DataImports`, { params });
   }
 
   upload(jobs: File | null, employees: File | null): Observable<unknown> {

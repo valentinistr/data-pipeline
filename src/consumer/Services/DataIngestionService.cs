@@ -20,6 +20,8 @@ public sealed class DataIngestionService(
     {
         try
         {
+            await dataUploadsService.SetProcessingAsync(@event.DataImportId, cancellationToken);
+
             var jobsResult = IngestJobs(@event);
             var employeesResult = IngestEmployees(@event);
 
