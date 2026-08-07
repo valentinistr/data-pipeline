@@ -7,7 +7,7 @@ using Server.ServiceBus.Events;
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services.AddSqlLiteDatabase(builder.Configuration);
-builder.Services.AddEventBusConsumer<LogEvent, LogEventConsumer>(TimeSpan.FromSeconds(5));
+builder.Services.AddEventBusConsumer<FileUploadEvent, FileUploadEventConsumer>(TimeSpan.FromSeconds(5));
 
 var host = builder.Build();
 await host.RunAsync();

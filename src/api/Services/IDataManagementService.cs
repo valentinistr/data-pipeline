@@ -4,5 +4,5 @@ namespace Api.Services;
 
 public interface IDataManagementService
 {
-    Task<string> UploadAsync(UploadedFile? jobs, UploadedFile? employees, CancellationToken cancellationToken = default);
+    Task UploadAsync(UploadedFile? jobs, UploadedFile? employees, CancellationToken cancellationToken = default);
 }

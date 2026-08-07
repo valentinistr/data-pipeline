@@ -1,13 +1,17 @@
+using Server.ServiceBus.Events;
+using Server.ServiceBus.Publisher;
 using Server.Storage;
 
 namespace Api.Services;
 
-public sealed class DataManagementService(IFileStorage fileStorage) : IDataManagementService
+public sealed class DataManagementService(
+    IFileStorage fileStorage,
+    IEventBusPublisher eventBus) : IDataManagementService
 {
     private const string JobsPrefix = "jobs";
     private const string EmployeesPrefix = "employees";
 
-    public Task<string> UploadAsync(
+    public async Task UploadAsync(
         UploadedFile? jobs,
         UploadedFile? employees,
         CancellationToken cancellationToken = default)
@@ -25,7 +29,8 @@ public sealed class DataManagementService(IFileStorage fileStorage) : IDataManag
             files.Add(employees);
         }
 
-        return fileStorage.SaveAsync(files, cancellationToken);
+        var folderPath = await fileStorage.SaveAsync(files, cancellationToken);
+        await eventBus.PublishAsync(new FileUploadEvent { UploadLocation = folderPath }, cancellationToken);
     }
 
     private static void ValidateFiles(UploadedFile? jobs, UploadedFile? employees)
