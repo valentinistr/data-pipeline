@@ -31,6 +31,8 @@
   },
   "remoteEnv": {
     "DOTNET_USE_POLLING_FILE_WATCHER": "1",
+    "DOTNET_WATCH_PROCESS_CLEANUP_TIMEOUT_MS": "5000",
+    "DOTNET_WATCH_RESTART_ON_RUDE_EDIT": "1",
     "Database__ConnectionString": "Data Source=/workspaces/pf-data-pipeline/temp/exercise.db",
     "FileSystemStorage__BasePath": "/workspaces/pf-data-pipeline/temp/uploads"
   },
