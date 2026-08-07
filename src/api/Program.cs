@@ -1,5 +1,7 @@
+using Api.Services;
 using Database.Extensions;
 using Server.ServiceBus;
+using Server.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddEnvironmentVariables();
@@ -8,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSqlLiteDatabase(builder.Configuration);
 builder.Services.AddEventBus();
+builder.Services.AddFileStorage(builder.Configuration);
+builder.Services.AddScoped<IDataManagementService, DataManagementService>();
 
 builder.Services.AddCors(options =>
 {

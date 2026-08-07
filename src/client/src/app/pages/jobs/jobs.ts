@@ -1,8 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
-import { API_BASE_URL } from '../../api-base-url';
 import { Job } from '../../models/job';
+import { JobsService } from '../../services/jobs.service';
 
 @Component({
   selector: 'app-jobs',
@@ -10,7 +9,7 @@ import { Job } from '../../models/job';
   templateUrl: './jobs.html',
 })
 export class JobsPage implements OnInit {
-  private readonly http = inject(HttpClient);
+  private readonly jobsService = inject(JobsService);
 
   readonly columns = ['id', 'jobCode', 'name'] as const;
   readonly rows = signal<Job[]>([]);
@@ -18,7 +17,7 @@ export class JobsPage implements OnInit {
   readonly error = signal<string | null>(null);
 
   ngOnInit(): void {
-    this.http.get<Job[]>(`${API_BASE_URL}/Jobs`).subscribe({
+    this.jobsService.getAll().subscribe({
       next: (data) => {
         this.rows.set(data);
         this.loading.set(false);

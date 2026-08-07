@@ -1,6 +1,12 @@
-# Live Coding Exercise
+# Data Pipeline
 
 Angular 20 + .NET 10 monorepo for live coding interviews. Opens in GitHub Codespaces with the Dev Container tooling preconfigured.
+
+## How to use this repo:
+
+- Log into your GitHub account and navigate to the repository root. Make sure the `main` branch is selected.
+- Click the `<> Code` button and select `Codespaces`.
+- Click `Create codespace on main` and then open your newly created development environment.
 
 ## Structure
 
@@ -9,7 +15,7 @@ Angular 20 + .NET 10 monorepo for live coding interviews. Opens in GitHub Codesp
 - [`src/client/`](src/client/) — Angular 20 app (`ng serve`, port 4200)
 - [`src/api/`](src/api/) — .NET 10 Web API (`dotnet run`, port 5133)
 - [`src/database/`](src/database/) — EF DbContext + seed console app
-- [`src/consumer/`](src/consumer/) — .NET console worker (placeholder)
+- [`src/consumer/`](src/consumer/) — .NET background worker process
 
 ## Build
 

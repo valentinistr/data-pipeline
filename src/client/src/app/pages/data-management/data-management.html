@@ -2,45 +2,95 @@
 
 @if (loading()) {
   <p class="loading">Loading...</p>
-} @else if (error()) {
-  <p class="error">{{ error() }}</p>
 } @else {
-  <table mat-table [dataSource]="rows()" class="data-table">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>Id</th>
-      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
-    </ng-container>
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  } @else {
+    <table mat-table [dataSource]="rows()" class="data-table">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="timestamp">
-      <th mat-header-cell *matHeaderCellDef>Timestamp</th>
-      <td mat-cell *matCellDef="let row">{{ row.timestamp | date: 'medium' }}</td>
-    </ng-container>
+      <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef>Timestamp</th>
+        <td mat-cell *matCellDef="let row">{{ row.timestamp | date: 'medium' }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="validEmployees">
-      <th mat-header-cell *matHeaderCellDef>ValidEmployees</th>
-      <td mat-cell *matCellDef="let row">{{ row.validEmployees }}</td>
-    </ng-container>
+      <ng-container matColumnDef="validEmployees">
+        <th mat-header-cell *matHeaderCellDef>ValidEmployees</th>
+        <td mat-cell *matCellDef="let row">{{ row.validEmployees }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="invalidEmployees">
-      <th mat-header-cell *matHeaderCellDef>InvalidEmployees</th>
-      <td mat-cell *matCellDef="let row">{{ row.invalidEmployees }}</td>
-    </ng-container>
+      <ng-container matColumnDef="invalidEmployees">
+        <th mat-header-cell *matHeaderCellDef>InvalidEmployees</th>
+        <td mat-cell *matCellDef="let row">{{ row.invalidEmployees }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="validJobs">
-      <th mat-header-cell *matHeaderCellDef>ValidJobs</th>
-      <td mat-cell *matCellDef="let row">{{ row.validJobs }}</td>
-    </ng-container>
+      <ng-container matColumnDef="validJobs">
+        <th mat-header-cell *matHeaderCellDef>ValidJobs</th>
+        <td mat-cell *matCellDef="let row">{{ row.validJobs }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="invalidJobs">
-      <th mat-header-cell *matHeaderCellDef>InvalidJobs</th>
-      <td mat-cell *matCellDef="let row">{{ row.invalidJobs }}</td>
-    </ng-container>
+      <ng-container matColumnDef="invalidJobs">
+        <th mat-header-cell *matHeaderCellDef>InvalidJobs</th>
+        <td mat-cell *matCellDef="let row">{{ row.invalidJobs }}</td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columns"></tr>
-    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
 
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" [attr.colspan]="columns.length">No data imports found.</td>
-    </tr>
-  </table>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" [attr.colspan]="columns.length">No data imports found.</td>
+      </tr>
+    </table>
+  }
+
+  <hr class="upload-divider" />
+
+  <section class="upload">
+    <h2>Upload your data</h2>
+
+    @if (uploadStatus() === 'uploading') {
+      <p class="upload-status">Uploading</p>
+    } @else if (uploadStatus() === 'success') {
+      <p class="upload-status upload-status--success">Upload successful</p>
+    } @else if (uploadStatus() === 'error') {
+      <p class="upload-status upload-status--error">Upload failed.</p>
+    }
+
+    <div class="upload__files">
+      <div class="upload__field">
+        <label for="jobs-file">Jobs</label>
+        <input
+          #jobsInput
+          id="jobs-file"
+          type="file"
+          accept=".csv"
+          (change)="onJobsSelected($event)"
+        />
+        @if (jobsFileError()) {
+          <p class="upload-field-error">{{ jobsFileError() }}</p>
+        }
+      </div>
+
+      <div class="upload__field">
+        <label for="employees-file">Employees</label>
+        <input
+          #employeesInput
+          id="employees-file"
+          type="file"
+          accept=".csv"
+          (change)="onEmployeesSelected($event)"
+        />
+        @if (employeesFileError()) {
+          <p class="upload-field-error">{{ employeesFileError() }}</p>
+        }
+      </div>
+    </div>
+
+    <div class="upload__actions">
+      <button type="button" [disabled]="!canUpload()" (click)="upload()">Upload</button>
+    </div>
+  </section>
 }

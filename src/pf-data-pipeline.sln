@@ -3,19 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{FBF56CC3-7AE6-AD2D-3F14-7F97FD322CD6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "core\Core.csproj", "{1C929DB6-F8AC-4D54-BC46-7640CA65E47F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{D82C56D6-B2CD-F611-9E31-04638F7EC30E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "api\Api.csproj", "{886B9B66-32D2-46AE-B456-D29C03CE7B06}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{E0096E63-5207-411F-2649-837654E3C58A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlLiteDatabase", "database\SqlLiteDatabase.csproj", "{92259546-9255-448F-94AC-CD6675255FC0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "consumer", "consumer", "{7E27DC59-6CD1-79A0-D6D2-D5E2D5D70425}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer", "consumer\Consumer.csproj", "{AE0312EE-AAFB-4681-BE0C-41ECDB727331}"
 EndProject
@@ -80,11 +72,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{1C929DB6-F8AC-4D54-BC46-7640CA65E47F} = {FBF56CC3-7AE6-AD2D-3F14-7F97FD322CD6}
-		{886B9B66-32D2-46AE-B456-D29C03CE7B06} = {D82C56D6-B2CD-F611-9E31-04638F7EC30E}
-		{92259546-9255-448F-94AC-CD6675255FC0} = {E0096E63-5207-411F-2649-837654E3C58A}
-		{AE0312EE-AAFB-4681-BE0C-41ECDB727331} = {7E27DC59-6CD1-79A0-D6D2-D5E2D5D70425}
 	EndGlobalSection
 EndGlobal

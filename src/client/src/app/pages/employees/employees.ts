@@ -1,8 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
-import { API_BASE_URL } from '../../api-base-url';
 import { Employee } from '../../models/employee';
+import { EmployeesService } from '../../services/employees.service';
 
 @Component({
   selector: 'app-employees',
@@ -10,7 +9,7 @@ import { Employee } from '../../models/employee';
   templateUrl: './employees.html',
 })
 export class EmployeesPage implements OnInit {
-  private readonly http = inject(HttpClient);
+  private readonly employeesService = inject(EmployeesService);
 
   readonly columns = ['id', 'jobCode', 'firstName', 'lastName', 'department'] as const;
   readonly rows = signal<Employee[]>([]);
@@ -18,7 +17,7 @@ export class EmployeesPage implements OnInit {
   readonly error = signal<string | null>(null);
 
   ngOnInit(): void {
-    this.http.get<Employee[]>(`${API_BASE_URL}/Employees`).subscribe({
+    this.employeesService.getAll().subscribe({
       next: (data) => {
         this.rows.set(data);
         this.loading.set(false);
