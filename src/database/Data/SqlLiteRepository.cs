@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Database.Data;
 
-public class SqlLiteRepository<T>(DbSet<T> dbSet) : IRepository<T> where T : class
+internal class SqlLiteRepository<T>(DbSet<T> dbSet) : IRepository<T> where T : class
 {
     public IQueryable<T> Query => dbSet.AsQueryable();
 

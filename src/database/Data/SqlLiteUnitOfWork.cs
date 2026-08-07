@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Database.Data;
 
-public class SqlLiteUnitOfWork(SqlLiteDbContext dbContext) : IUnitOfWork
+internal class SqlLiteUnitOfWork(SqlLiteDbContext dbContext) : IUnitOfWork
 {
     public IRepository<Employee> Employees { get; } = new SqlLiteRepository<Employee>(dbContext.Employees);
     public IRepository<Job> Jobs { get; } = new SqlLiteRepository<Job>(dbContext.Jobs);

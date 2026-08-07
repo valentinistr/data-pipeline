@@ -30,7 +30,7 @@ public static class SqlLiteCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddSqlLiteSeedingServices(this IServiceCollection services)
+    internal static IServiceCollection AddSqlLiteSeedingServices(this IServiceCollection services)
     {
         services.AddSingleton<IDatabaseSeed, SqlLiteDatabaseSeed>();
         return services;

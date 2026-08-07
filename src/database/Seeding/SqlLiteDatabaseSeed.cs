@@ -3,7 +3,7 @@ using Database.Data;
 
 namespace Database.Seeding;
 
-public sealed class SqlLiteDatabaseSeed(SqlLiteDbContext dbContext) : IDatabaseSeed
+internal sealed class SqlLiteDatabaseSeed(SqlLiteDbContext dbContext) : IDatabaseSeed
 {
     public async Task SeedAsync(CancellationToken cancellationToken = default)
     {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Database.Data;
 
-public class SqlLiteDbContext(DbContextOptions<SqlLiteDbContext> options)
+internal class SqlLiteDbContext(DbContextOptions<SqlLiteDbContext> options)
     : DbContext(options)
 {
     public DbSet<Employee> Employees => Set<Employee>();

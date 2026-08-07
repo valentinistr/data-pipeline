@@ -5,12 +5,15 @@ using Core.ServiceBus.Events;
 using Database.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using WorkerProcess.DataProcessors;
 using WorkerProcess.Handlers;
 using WorkerProcess.Models;
 using WorkerProcess.Services;
 
 var builder = Host.CreateApplicationBuilder(args);
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 builder.Services.AddSqlLiteDatabase(builder.Configuration);
 builder.Services.AddCoreServices();
