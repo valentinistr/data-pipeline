@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Server.Data;
 using Server.Models;
 using Server.ServiceBus.Models;
@@ -15,4 +16,24 @@ public class SqlLiteUnitOfWork(SqlLiteDbContext dbContext) : IUnitOfWork
 
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         => dbContext.SaveChangesAsync(cancellationToken);
+
+    public void DiscardChanges()
+    {
+        foreach (var entry in dbContext.ChangeTracker.Entries().ToList())
+        {
+            switch (entry.State)
+            {
+                case EntityState.Added:
+                    entry.State = EntityState.Detached;
+                    break;
+                case EntityState.Modified:
+                    entry.CurrentValues.SetValues(entry.OriginalValues);
+                    entry.State = EntityState.Unchanged;
+                    break;
+                case EntityState.Deleted:
+                    entry.State = EntityState.Unchanged;
+                    break;
+            }
+        }
+    }
 }

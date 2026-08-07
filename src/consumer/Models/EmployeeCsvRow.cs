@@ -1,8 +1,7 @@
-namespace Server.Models;
+namespace Consumer.Models;
 
-public class Employee
+public sealed class EmployeeCsvRow
 {
-    public int Id { get; set; }
     public string EmployeeCode { get; set; } = string.Empty;
     public string JobCode { get; set; } = string.Empty;
     public string FirstName { get; set; } = string.Empty;

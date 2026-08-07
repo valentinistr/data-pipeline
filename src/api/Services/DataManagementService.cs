@@ -1,12 +1,14 @@
 using Server.ServiceBus.Events;
 using Server.ServiceBus.Publisher;
+using Server.Services;
 using Server.Storage;
 
 namespace Api.Services;
 
 public sealed class DataManagementService(
     IFileStorage fileStorage,
-    IEventBusPublisher eventBus) : IDataManagementService
+    IEventBusPublisher eventBus,
+    IDataUploadsService dataUploadsService) : IDataManagementService
 {
     private const string JobsPrefix = "jobs";
     private const string EmployeesPrefix = "employees";
@@ -30,7 +32,17 @@ public sealed class DataManagementService(
         }
 
         var folderPath = await fileStorage.SaveAsync(files, cancellationToken);
-        await eventBus.PublishAsync(new FileUploadEvent { UploadLocation = folderPath }, cancellationToken);
+        var dataImport = await dataUploadsService.CreateProcessingAsync(cancellationToken);
+
+        await eventBus.PublishAsync(
+            new FileUploadEvent
+            {
+                DataImportId = dataImport.Id,
+                UploadLocation = folderPath,
+                JobsFileName = jobs?.FileName,
+                EmployeesFileName = employees?.FileName,
+            },
+            cancellationToken);
     }
 
     private static void ValidateFiles(UploadedFile? jobs, UploadedFile? employees)

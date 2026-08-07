@@ -1,6 +1,8 @@
 export interface DataImport {
   id: number;
-  timestamp: string;
+  uploaded: string;
+  completed: string | null;
+  status: string;
   validEmployees: number;
   invalidEmployees: number;
   validJobs: number;

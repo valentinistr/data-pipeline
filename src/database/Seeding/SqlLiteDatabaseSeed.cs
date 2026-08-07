@@ -27,11 +27,11 @@ public sealed class SqlLiteDatabaseSeed(SqlLiteDbContext dbContext) : IDatabaseS
             new Job { JobCode = "HR-01", Name = "HR Specialist" });
 
         dbContext.Employees.AddRange(
-            new Employee { FirstName = "Ada", LastName = "Lovelace", Department = "Engineering", JobCode = "ENG-01" },
-            new Employee { FirstName = "Grace", LastName = "Hopper", Department = "Engineering", JobCode = "ENG-02" },
-            new Employee { FirstName = "Alan", LastName = "Turing", Department = "Research", JobCode = "RES-01" },
-            new Employee { FirstName = "Katherine", LastName = "Johnson", Department = "Research", JobCode = "RES-01" },
-            new Employee { FirstName = "Margaret", LastName = "Hamilton", Department = "Engineering", JobCode = "ENG-01" });
+            new Employee { EmployeeCode = "EMP-01", FirstName = "Ada", LastName = "Lovelace", Department = "Engineering", JobCode = "ENG-01" },
+            new Employee { EmployeeCode = "EMP-02", FirstName = "Grace", LastName = "Hopper", Department = "Engineering", JobCode = "ENG-02" },
+            new Employee { EmployeeCode = "EMP-03", FirstName = "Alan", LastName = "Turing", Department = "Research", JobCode = "RES-01" },
+            new Employee { EmployeeCode = "EMP-04", FirstName = "Katherine", LastName = "Johnson", Department = "Research", JobCode = "RES-01" },
+            new Employee { EmployeeCode = "EMP-05", FirstName = "Margaret", LastName = "Hamilton", Department = "Engineering", JobCode = "ENG-01" });
 
         await dbContext.SaveChangesAsync(cancellationToken);
     }

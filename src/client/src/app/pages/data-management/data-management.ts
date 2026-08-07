@@ -20,7 +20,9 @@ export class DataManagementPage implements OnInit {
 
   readonly columns = [
     'id',
-    'timestamp',
+    'uploaded',
+    'completed',
+    'status',
     'validEmployees',
     'invalidEmployees',
     'validJobs',
