@@ -45,10 +45,10 @@ setsid dotnet watch run --non-interactive --project src/api/Api.csproj --urls ht
 echo $! > logs/api.pid
 wait_for_port 5133 "api"
 
-log "Starting consumer..."
-setsid dotnet watch run --non-interactive --project src/consumer/Consumer.csproj \
-  > logs/consumer.log 2>&1 < /dev/null &
-echo $! > logs/consumer.pid
+log "Starting worker process..."
+setsid dotnet watch run --non-interactive --project src/consumer/WorkerProcess.csproj \
+  > logs/worker.log 2>&1 < /dev/null &
+echo $! > logs/worker.pid
 
 log "Starting client on port 4200..."
 setsid npm --prefix src/client run start -- --host 0.0.0.0 --port 4200 --allowed-hosts --poll 2000 \
@@ -56,4 +56,4 @@ setsid npm --prefix src/client run start -- --host 0.0.0.0 --port 4200 --allowed
 echo $! > logs/client.pid
 wait_for_port 4200 "client"
 
-log "Startup complete. Logs: logs/api.log, logs/consumer.log, logs/client.log"
+log "Startup complete. Logs: logs/api.log, logs/worker.log, logs/client.log"

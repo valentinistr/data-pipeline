@@ -83,6 +83,7 @@ stop_matching() {
 log "Stopping frontend and backend..."
 
 stop_pidfile logs/api.pid
+stop_pidfile logs/worker.pid
 stop_pidfile logs/consumer.pid
 stop_pidfile logs/client.pid
 
