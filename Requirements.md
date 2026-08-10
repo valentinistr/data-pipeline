@@ -8,7 +8,9 @@ Implement the following change requests:
    1. Make the required changes for Employees to have a Salary column on the Employees page
    2. Update the data ingestion process to load employee data that includes Salary. The salary must be greater than 0
 
-2. The search option on the Jobs page is not working. Can you fix it? TODO
+2. The search option on the Jobs page is not working. Can you fix it?
+   1. The search feature should allow the user to type in some text and, when clicking the search button, get filtered results on the Jobs page
+   2. The searched text should apply to all columns, case insensitive, returning rows if any of the columns data starts with the input text
 
 3. Re-uploading the same employee should update, not duplicate.
    1. Match employees by EmployeeCode

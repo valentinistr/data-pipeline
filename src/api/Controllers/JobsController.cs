@@ -12,7 +12,8 @@ public class JobsController(IUnitOfWork unitOfWork) : ControllerBase
     [HttpGet]
     public async Task<ActionResult<PagedResult<Job>>> Get(
         [FromQuery] int skip = 0,
-        [FromQuery] int take = 10)
+        [FromQuery] int take = 10,
+        [FromQuery] string? search = null)
     {
         if (skip < 0 || take <= 0)
         {

@@ -40,3 +40,15 @@ app-root {
 .error {
   color: var(--mat-sys-error);
 }
+
+.jobs-search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  max-width: 32rem;
+}
+
+.jobs-search mat-form-field {
+  flex: 1;
+}

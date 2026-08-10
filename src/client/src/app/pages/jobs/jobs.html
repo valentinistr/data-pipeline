@@ -1,5 +1,20 @@
 <h1>Jobs</h1>
 
+<form class="jobs-search" (ngSubmit)="onSearch()">
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      type="search"
+      name="search"
+      [ngModel]="searchDraft()"
+      (ngModelChange)="searchDraft.set($event)"
+      placeholder="Starts with…"
+    />
+  </mat-form-field>
+  <button matButton="filled" type="submit">Search</button>
+</form>
+
 @if (loading()) {
   <p class="loading">Loading...</p>
 } @else if (error()) {
@@ -32,6 +47,7 @@
   <mat-paginator
     [length]="totalCount()"
     [pageSize]="pageSize"
+    [pageIndex]="pageIndex()"
     [hidePageSize]="true"
     [showFirstLastButtons]="true"
     (page)="onPage($event)"
