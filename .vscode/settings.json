@@ -1,0 +1,18 @@
+{
+  "files.exclude": {
+    "**/.claude": true,
+    "**/.cursor": true,
+    "**/.devcontainer": true,
+    "**/bin": true,
+    "**/obj": true,
+    "**/.idea": true,
+    "src/client/.vscode": true,
+    "**/.angular": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/*.sln.dotsettings": true,
+    "**/scripts": true,
+    "**/.vscode": true,
+	"src/**/Properties": true,
+  }
+}

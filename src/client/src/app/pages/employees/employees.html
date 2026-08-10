@@ -1,0 +1,54 @@
+<h1>Employees</h1>
+
+@if (loading()) {
+  <p class="loading">Loading...</p>
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+} @else {
+  <table mat-table [dataSource]="rows()" class="data-table">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeCode">
+      <th mat-header-cell *matHeaderCellDef>EmployeeCode</th>
+      <td mat-cell *matCellDef="let row">{{ row.employeeCode }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="jobCode">
+      <th mat-header-cell *matHeaderCellDef>JobCode</th>
+      <td mat-cell *matCellDef="let row">{{ row.jobCode }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>FirstName</th>
+      <td mat-cell *matCellDef="let row">{{ row.firstName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>LastName</th>
+      <td mat-cell *matCellDef="let row">{{ row.lastName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef>Department</th>
+      <td mat-cell *matCellDef="let row">{{ row.department }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" [attr.colspan]="columns.length">No employees found.</td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [length]="totalCount()"
+    [pageSize]="pageSize"
+    [hidePageSize]="true"
+    [showFirstLastButtons]="true"
+    (page)="onPage($event)"
+  />
+}
