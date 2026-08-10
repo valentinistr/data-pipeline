@@ -1,0 +1,16 @@
+# IDE
+.idea/
+
+# .NET
+**/bin/
+**/obj/
+*.user
+
+# Node / Angular (client/.gitignore covers client-local specifics)
+node_modules/
+
+# devcontainer / local runtime artifacts
+.runtime/
+
+# local SDD scratch (superpowers workflow artifacts)
+.superpowers/

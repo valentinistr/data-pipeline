@@ -1,0 +1,88 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "detail": "dotnet build + ng build (development)",
+      "type": "shell",
+      "command": "bash scripts/build.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$tsc", "$msCompile"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false,
+        "clear": true
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "icon": {
+        "id": "tools",
+        "color": "terminal.ansiBlue"
+      }
+    },
+    {
+      "label": "Start (hot reload)",
+      "detail": "Stop, build, start API (:5133) + Angular (:4200), both watching for changes",
+      "type": "shell",
+      "command": "bash scripts/start.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true,
+        "clear": true
+      },
+      "icon": {
+        "id": "play",
+        "color": "terminal.ansiGreen"
+      }
+    },
+    {
+      "label": "Start (no hot reload)",
+      "detail": "Same as Start, but neither the API nor Angular watches for changes",
+      "type": "shell",
+      "command": "bash scripts/start.sh --no-watch",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true,
+        "clear": true
+      },
+      "icon": {
+        "id": "play",
+        "color": "terminal.ansiYellow"
+      }
+    },
+    {
+      "label": "Stop",
+      "detail": "Stop the API, Angular, and their watchers",
+      "type": "shell",
+      "command": "bash scripts/stop.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false
+      },
+      "icon": {
+        "id": "debug-stop",
+        "color": "terminal.ansiRed"
+      }
+    }
+  ]
+}

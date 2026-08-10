@@ -1,0 +1,55 @@
+<h1>Jobs</h1>
+
+<form class="jobs-search" (ngSubmit)="onSearch()">
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      type="search"
+      name="search"
+      [ngModel]="searchDraft()"
+      (ngModelChange)="searchDraft.set($event)"
+      placeholder="Starts with…"
+    />
+  </mat-form-field>
+  <button matButton="filled" type="submit">Search</button>
+</form>
+
+@if (loading()) {
+  <p class="loading">Loading...</p>
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+} @else {
+  <table mat-table [dataSource]="rows()" class="data-table">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="jobCode">
+      <th mat-header-cell *matHeaderCellDef>JobCode</th>
+      <td mat-cell *matCellDef="let row">{{ row.jobCode }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" [attr.colspan]="columns.length">No jobs found.</td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [length]="totalCount()"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex()"
+    [hidePageSize]="true"
+    [showFirstLastButtons]="true"
+    (page)="onPage($event)"
+  />
+}

@@ -1,0 +1,6 @@
+<Project>
+  <!-- Default to Debug so dotnet build/run/watch produce debuggable binaries. -->
+  <PropertyGroup Condition="'$(Configuration)' == ''">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+</Project>

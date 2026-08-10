@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.shell {
+  height: 100%;
+}
+
+.shell__sidenav {
+  width: 240px;
+  --mat-sidenav-container-background-color: var(--shell-nav-bg);
+  background-color: var(--shell-nav-bg);
+  border-right: 1px solid var(--shell-nav-border);
+}
+
+.shell__brand {
+  padding: 1rem 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.shell__content {
+  padding: 1.5rem;
+}
+
+.active-link {
+  font-weight: 600;
+}

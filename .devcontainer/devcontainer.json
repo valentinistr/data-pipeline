@@ -1,0 +1,63 @@
+{
+  "name": "Live Coding Exercise (Angular 20 + .NET 10)",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": "bash scripts/build.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "angular.ng-template",
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "extensions.ignoreRecommendations": true,
+        "files.exclude": {
+          "**/.claude": true,
+          "**/.cursor": true,
+          "**/.devcontainer": true,
+          "**/bin": true,
+          "**/obj": true,
+          "**/.idea": true,
+          "src/client/.vscode": true,
+          "**/.angular": true,
+          "**/node_modules": true,
+          "**/dist": true,
+          "**/*.sln.dotsettings": true,
+          "**/scripts": true,
+          ".gitignore": true,
+          ".gitattributes": true,
+          "**/.vscode": true,
+          "src/**/Properties": true
+        },
+        "workbench.colorTheme": "Default Dark Modern",
+        "editor.semanticHighlighting.enabled": true,
+        "editor.semanticTokenColorCustomizations": {
+          "[Default Dark Modern]": {
+            "enabled": true
+          }
+        }
+      }
+    }
+  },
+  "forwardPorts": [4200, 5133],
+  "portsAttributes": {
+    "4200": {
+      "label": "Angular client",
+      "onAutoForward": "openPreview"
+    },
+    "5133": {
+      "label": ".NET API",
+      "onAutoForward": "notify"
+    }
+  },
+  "remoteEnv": {
+    "FileSystemStorage__BasePath": "${containerWorkspaceFolder}/.runtime/temp/uploads",
+    "DOTNET_WATCH_RESTART_ON_RUDE_EDIT": "1",
+    "DOTNET_WATCH_SUPPRESS_BROWSER_REFRESH": "1"
+  },
+  "remoteUser": "vscode"
+}
